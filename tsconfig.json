@@ -4,6 +4,7 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "jsx": "preserve",
+    "strict": true,
     "noLib": false,
     "sourceMap": true
   }

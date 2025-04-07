@@ -4,16 +4,27 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "dev": " pnpm -C play dev"
+    "dev": " pnpm -C play dev",
+    "build": "gulp -f build/gulpfile.ts",
+    "docs:dev": "pnpm -C docs docs:dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.4.1",
   "devDependencies": {
-    "@z/elements": "workspace:*",
+    "@types/gulp": "^4.0.17",
+    "@types/gulp-sass": "^5.0.4",
+    "@types/node": "^22.14.0",
+    "@types/sass": "^1.45.0",
+    "@z/components": "workspace:*",
     "@z/theme-chalk": "workspace:*",
+    "@z/utils": "workspace:*",
+    "gulp": "^5.0.0",
+    "gulp-sass": "^6.0.1",
+    "gulp-typescript": "6.0.0-alpha.1",
     "sass": "^1.86.1",
+    "sucrase": "^3.35.0",
     "typescript": "^5.8.2"
   },
   "dependencies": {

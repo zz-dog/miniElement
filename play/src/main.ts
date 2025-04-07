@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import App from "./app.vue";
 
-import { ZIcon } from "@z/elements";
+import { ZIcon } from "../../packages/components";
 import "@z/theme-chalk/src/index.scss";
 const app = createApp(App);
 app.use(ZIcon);

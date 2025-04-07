@@ -6,15 +6,18 @@ pnpm install
 
 # 目录结构
 
-├── README.md、 # 说明文档
-├── pnpm-lock.yaml、 # 依赖锁定文件
-├── package.json、 # 依赖配置文件
-├── tsconfig.json、 # ts 配置文件
-├── play #组件测试目录
+```
+├── build # 构建流程目录
 ├── packages #monorepo 项目目录
 │ ├── elements # vue3 组件目录
 │ ├── utils # 工具函数目录
 │ ├── theme-chalk # 组件样式目录
+├── play #组件测试目录
+├── package.json、 # 依赖配置文件
+├── pnpm-lock.yaml、 # 依赖锁定文件
+├── README.md、 # 说明文档
+├── tsconfig.json、 # ts 配置文件
+```
 
 # vue 内置 api
 
@@ -51,3 +54,35 @@ pnpm install
 - @forward 用于将一个模块的内容重新导出（转发）给其他文件。
 - 它不会直接将内容暴露到当前文件，而是将内容转发到引入当前文件的其他文件中。
 - 适用场景：当你希望创建一个中间层模块，统一管理和转发多个模块的内容时。
+
+# pnpm
+
+## --filter
+
+- 作用：用于筛选特定的工作区（workspace）包，执行命令时只针对匹配的包。
+- 适用场景：在 Monorepo 项目中，选择性地对某些包执行命令。
+- 用法：
+
+```
+  pnpm run build --filter ./packages
+```
+
+## -C
+
+- 作用：切换到指定目录后再执行命令
+- 适用场景：当需要在某个子目录中运行命令时使用。
+- 用法：
+
+```
+ pnpm -C ./packages/elements run build
+```
+
+## --parallel
+
+- --parallel：在 Monorepo 项目中，允许对多个包同时并行执行命令，而不是按顺序逐个执行。
+- 适用场景：当需要提高执行效率时，尤其是多个包的构建或测试任务可以同时运行时。
+- 用法：
+
+```
+pnpm run  --filter ./packages --parallel build
+```
