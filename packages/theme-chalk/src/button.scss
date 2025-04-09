@@ -1,0 +1,17 @@
+@use './mixins/mixins.scss' as *; //没有命名空间
+
+@include b('button') {
+  border-radius: 5px;
+
+  padding: 4px 10px;
+
+
+
+  @include callTheme();
+  @include callSize();
+
+  @include when('disabled') {
+    background-color: #ccc;
+    border-color: #ccc;
+  }
+}

@@ -1,2 +1,127 @@
 @use 'config' as *; //没有命名空间
+@use './theme.scss' as *;
 @forward 'config';
+@forward './theme.scss';
+
+// .z-button
+@mixin b($block) {
+  $B : $namespace +'-' +$block;
+
+  .#{$B} {
+    @content;
+  }
+}
+
+//is-xxx
+@mixin when($state) {
+  @at-root {
+    &.#{$state-separator + $state} {
+      @content;
+    }
+  }
+}
+
+
+// .z-button--primary
+@mixin m($modifier) {
+  @at-root {
+    #{&+$modifier-separator + $modifier} {
+      @content;
+    }
+  }
+}
+
+// .z-button__text
+@mixin e($element) {
+  @at-root {
+    #{& + $element-separator +$element} {
+      @content
+    }
+  }
+}
+
+@function themed($key, $theme-name: null) {
+  // 如果没有提供主题名称，使用全局默认的light主题
+  $current-theme: 'light';
+
+  @if $theme-name {
+    $current-theme: $theme-name;
+  }
+
+  @return map-get(map-get($themes, $current-theme), $key);
+}
+
+@mixin changeThemed {
+  @each $theme-name, $theme-map in $themes {
+    [data-theme=#{$theme-name}] & {
+      // 传递当前主题名称到content中
+      @content($theme-name);
+    }
+  }
+}
+
+@mixin callDefaultTheme {
+  border-color: themed('border-color', $default-theme);
+  background: themed('background', $default-theme);
+  transition: all .3s ease;
+
+  @each $type in $typs {
+    @include m($type) {
+      color: themed('#{$type}-color', $default-theme);
+
+      &:hover {
+        background-color: lighten(themed('#{$type}-color', $default-theme), 20)
+      }
+
+      &:active {
+        border-color : darken(themed('#{$type}-color', $default-theme), 20)
+      }
+    }
+  }
+}
+
+
+
+@mixin callTheme() {
+  @include callDefaultTheme();
+
+  @include changeThemed using ($current-theme) {
+    border-color: themed('border-color', $current-theme);
+    background: themed('background', $current-theme);
+
+    @each $type in $typs {
+      @include m($type) {
+        color: themed('#{$type}-color', $current-theme);
+
+        &:hover {
+          background-color: lighten(themed('#{$type}-color', $default-theme), 20)
+        }
+
+        &:active {
+          border-color : darken(themed('#{$type}-color', $default-theme), 20)
+        }
+      }
+    }
+  }
+}
+
+//sizes
+
+@mixin s {
+  @each $size-name, $size-map in $sizes {
+    //将size-name,size-map传递@inculde
+    @content($size-name, $size-map);
+  }
+}
+
+@mixin callSize () {
+
+  @include s using ($size-name,
+    $size-map) {
+    @include m ($size-name) {
+      font-size: map-get($size-map , 'font-size');
+      padding: map-get($size-map , 'padding');
+
+    }
+  }
+}

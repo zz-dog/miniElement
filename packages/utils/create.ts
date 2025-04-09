@@ -5,10 +5,11 @@
 // 3. modifier: 组件的不同状态或变体，表示组件的不同外观或行为
 // 4. state: 组件的状态，表示组件在不同情况下的表现和交互
 
-const createNamespace = (name: string) => {
-  const prefixedName = `z-${name}`; // 添加前缀
-  return;
-};
+// const createNamespace = (name: string) => {
+//   const prefixedName = `z-${name}`; // 添加前缀
+//   return prefixedName;
+// };
+const prefixedName = "z";
 const _bem = (
   prefixedName: string,
   blockSuffix: string,
@@ -27,19 +28,16 @@ const _bem = (
   }
   return prefixedName; // 返回 BEM 类名
 };
-export const createBEM = (prefixedName: string) => {
-  const b = (blockSuffix: string) => _bem(prefixedName, blockSuffix, "", "");
-  const e = (element: string, blockSuffix: string) =>
-    _bem(prefixedName, blockSuffix, element, "");
-  const m = (modifier: string, blockSuffix: string) =>
-    _bem(prefixedName, blockSuffix, "", modifier);
-  const be = (blockSuffix: string, element: string) =>
-    _bem(prefixedName, blockSuffix, element, "");
+export const createBEM = (blockSuffix: string) => {
+  const b = () => _bem(prefixedName, blockSuffix, "", "");
+  const e = (element: string) => _bem(prefixedName, blockSuffix, element, "");
+  const m = (modifier: string) => _bem(prefixedName, blockSuffix, "", modifier);
+  const be = (element: string) => _bem(prefixedName, blockSuffix, element, "");
   const em = (element: string, modifier: string) =>
     _bem(prefixedName, "", element, modifier);
-  const bm = (blockSuffix: string, modifier: string) =>
+  const bm = (modifier: string) =>
     _bem(prefixedName, blockSuffix, "", modifier);
-  const bem = (blockSuffix: string, element: string, modifier: string) =>
+  const bem = (element: string, modifier: string) =>
     _bem(prefixedName, blockSuffix, element, modifier);
   const is = (name: string, state: boolean) => (state ? `is-${name}` : "");
   return {

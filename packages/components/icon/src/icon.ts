@@ -1,6 +1,7 @@
 //主要 处理 props以及一些公共方法types
-import { sizeType } from "../../shere/types";
+import { size } from "../../share";
 export interface IconProps {
-  size: sizeType;
+  size: size;
   color: string;
+  name: string;
 }

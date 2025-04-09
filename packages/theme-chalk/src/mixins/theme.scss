@@ -1,0 +1,45 @@
+$themes: (
+  light:(background: #ffffff,
+    text-color: #000000,
+    border-color: #e0e0e0,
+    default-color: #ffffff,
+    primary-color: #409eff,
+
+    success-color: #67c23a,
+    warning-color: #e6a23c,
+    danger-color: #f56c6c,
+    info-color: #909399),
+  dark:(background: #000000,
+    text-color: #ffffff,
+    border-color: #303133,
+    default-color: #000000,
+    primary-color: #409eff,
+
+    success-color: #67c23a,
+    warning-color: #e6a23c,
+    danger-color: #f56c6c,
+    info-color: #909399)
+);
+$typs: (
+  default,
+  primary,
+  success,
+  warning,
+  danger,
+  info
+);
+
+$default-theme: "light";
+
+
+
+$sizes :(small:(font-size: 12px,
+    padding: 4px 10px,
+  ),
+  default:(font-size: 16px,
+    padding: 6px 12px,
+  ),
+  large:(font-size: 20px,
+    padding: 8px 16px,
+  ),
+)
