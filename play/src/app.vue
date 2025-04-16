@@ -1,24 +1,16 @@
 <script setup lang="ts">
-import { ref } from "vue";
-const flag = ref(false);
-const onclick = () => {
-  console.log("click");
-};
+const modelValue = ["test1", "test2"];
 </script>
 
 <template>
-  <ZButton
-    disabled
-    size="small"
-    @click="onclick"
-  >
-    click
-  </ZButton>
-  <ZButton
-    @click="onclick"
-    size="default"
-  >
-    click
-  </ZButton>
-  <ZButton size="large"> click </ZButton>
+  <ZCollpase :modelValue>
+    <ZCollpaseItem
+      :title="name"
+      :key="index"
+      :name="name"
+      v-for="(name, index) in modelValue"
+    >
+      <div>this is content</div>
+    </ZCollpaseItem>
+  </ZCollpase>
 </template>

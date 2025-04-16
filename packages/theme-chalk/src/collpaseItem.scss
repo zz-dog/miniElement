@@ -1,0 +1,22 @@
+@use './mixins/mixins.scss' as *; //没有命名空间
+
+
+@include b('collapse-item') {
+  border-bottom: 1px solid #e4e7ed;
+
+  @include e('title') {
+    cursor: pointer;
+    padding-bottom: 2px;
+  }
+
+  @include e('content') {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s linear;
+    will-change: height;
+
+    @include when('active') {
+      max-height: 72px;
+    }
+  }
+}
